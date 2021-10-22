@@ -1,0 +1,89 @@
+/*
+bem
+*/
+/*
+@include b(input) {
+  display: inline-block;
+}
+==> 输出
+.el-input {
+  display: inline-block;
+}
+
+*/
+@import "config";
+@mixin b($block){
+  $B:$namespace+'-'+$block !global;
+  .#{$B}{
+    @content;
+  }
+}
+
+
+/*
+
+@include b(input) {
+  @include e(inner) {
+    padding: 0 15px;
+  }
+  @include e((suffix, suffix-inner)) {
+    position: absolute;
+  }
+}
+
+==>
+.el-input__inner {
+  padding: 0 15px;
+}
+
+.el-input__suffix,
+.el-input__suffix-inner {
+  position: absolute;
+}
+*/
+
+@mixin e($element){
+  $E:$element !global;
+  $currentSelector:'';
+  @each $unit in $element {
+    $currentSelector:#{$currentSelector+'.'+$B +$element-separator +$unit +','};
+  }
+  @at-root {
+    #{$currentSelector}{
+      @content
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ","};
+  }
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+/*
+@include b(input){
+  @include m(medium){
+    height: 30px;
+  }
+  @include m((mini,small)){
+    height: 20px;
+  }
+}
+
+===>
+
+.el-input--medium {
+  height: 30px;
+}
+
+.el-input--mini, .el-input--small {
+  height: 20px;
+}*/
