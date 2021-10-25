@@ -87,3 +87,30 @@ bem
 .el-input--mini, .el-input--small {
   height: 20px;
 }*/
+
+
+@mixin when($state){
+  @at-root {
+    .#{$state-prefix + $state} {
+      @content
+    }
+  }
+}
+
+@mixin when1($state){
+    .#{$state-prefix + $state} {
+      @content
+    }
+}
+
+.btn{
+  @include when(plain){
+    background:  rebeccapurple;
+  }
+}
+
+.btn1{
+  @include when1(plain){
+    background:  rebeccapurple;
+  }
+}

@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/*
+bem
+*/
+/*
+@include b(input) {
+  display: inline-block;
+}
+==> 输出
+.el-input {
+  display: inline-block;
+}
+
+*/
+/*
+
+@include b(input) {
+  @include e(inner) {
+    padding: 0 15px;
+  }
+  @include e((suffix, suffix-inner)) {
+    position: absolute;
+  }
+}
+
+==>
+.el-input__inner {
+  padding: 0 15px;
+}
+
+.el-input__suffix,
+.el-input__suffix-inner {
+  position: absolute;
+}
+*/
+/*
+@include b(input){
+  @include m(medium){
+    height: 30px;
+  }
+  @include m((mini,small)){
+    height: 20px;
+  }
+}
+
+===>
+
+.el-input--medium {
+  height: 30px;
+}
+
+.el-input--mini, .el-input--small {
+  height: 20px;
+}*/
+.is-plain {
+  background: rebeccapurple;
+}
+
+.btn1 .is-plain {
+  background: rebeccapurple;
+}
+
+/*# sourceMappingURL=mi.css.map */
