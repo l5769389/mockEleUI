@@ -5,13 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:theme": "node build/bin/gen-cssfile.js",
+    "build:theme": "node build/bin/gen-cssfile.js && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "test": "karma start test/unit/karma.conf.js --single-run"
   },
   "dependencies": {
     "chai": "^4.3.4",
     "core-js": "^3.6.5",
+    "cp-cli": "^2.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
     "karma-chai": "^0.1.0",
     "karma-chai-spies": "^0.1.4",
     "karma-coverage": "^2.0.3",

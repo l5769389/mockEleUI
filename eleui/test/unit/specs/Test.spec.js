@@ -1,11 +1,14 @@
 import Vue from 'vue'
-import Test from '@/components/Test.vue'
+import Button from 'packages/button'
+import {createTest} from "../util";
 
-describe('Test.vue', () => {
-  it('should render correct contents', () => {
-    const Constructor = Vue.extend(Test)
-    const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .to.equal('Welcome to Your Vue.js App')
+describe('Button', () => {
+  let vm;
+  it('create', function () {
+      vm = createTest(Button,{
+          type:'primary'
+      },true)
   })
+    let buttonElm =vm.$el;
+  expect(buttonElm.classList.contains('el-button--primary')).to.be.true;
 })

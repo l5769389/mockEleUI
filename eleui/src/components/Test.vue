@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Welcome to Your Vue.js App</h1>
+   <el-button type="primary"/>
   </div>
 </template>
 
