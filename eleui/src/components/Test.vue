@@ -5,8 +5,12 @@
 </template>
 
 <script>
+import ElButton from "../../lib/element-ui.common";
 export default {
-name: "Test"
+name: "Test",
+  components:{
+    ElButton,
+  }
 }
 </script>
 
