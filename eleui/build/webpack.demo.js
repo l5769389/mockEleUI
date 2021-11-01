@@ -102,13 +102,13 @@ const webpackConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      // template: './examples/index.tpl',
+      template: './examples/index.tpl',
       filename: './index.html',
-      // favicon: './examples/favicon.ico'
+      favicon: './examples/favicon.ico'
     }),
-    // new CopyWebpackPlugin([
-    //   { from: 'examples/versions.json' }
-    // ]),
+    new CopyWebpackPlugin([
+      { from: 'examples/versions.json' }
+    ]),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
@@ -135,17 +135,17 @@ if (isProd) {
     'highlight.js': 'hljs'
   };
   webpackConfig.plugins.push(
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash:7].css'
-    })
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash:7].css'
+      })
   );
   webpackConfig.optimization.minimizer.push(
-    new UglifyJsPlugin({
-      cache: true,
-      parallel: true,
-      sourceMap: false
-    }),
-    new OptimizeCSSAssetsPlugin({})
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false
+      }),
+      new OptimizeCSSAssetsPlugin({})
   );
   // https://webpack.js.org/configuration/optimization/#optimizationsplitchunks
   webpackConfig.optimization.splitChunks = {
