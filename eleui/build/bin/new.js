@@ -15,7 +15,6 @@ const fs = require('fs');
 const fileSave = require('file-save');
 const uppercamelcase = require('uppercamelcase');
 const componentname = process.argv[2];
-// const chineseName = process.argv[3] || componentname;
 const ComponentName = uppercamelcase(componentname);
 const PackagePath = path.resolve(__dirname, '../../packages', componentname);
 const Files = [
@@ -124,11 +123,17 @@ fileSave(elementTsPath)
   .end('\n');
 
 // 创建 package
-Files.forEach(file => {
-  fileSave(path.join(PackagePath, file.filename))
-    .write(file.content, 'utf8')
-    .end('\n');
-});
+
+  try {
+    Files.forEach(file => {
+    fileSave(path.join(PackagePath, file.filename))
+        .write(file.content, 'utf8')
+        .end('\n');
+   });
+  }catch (e) {
+    console.log(e)
+  }
+
 
 
 console.log('DONE!');
