@@ -5,7 +5,7 @@
     inputSize ? 'el-input--' + inputSize : '',
     {
       'is-disabled': inputDisabled,
-      'is-exceed': inputExceed,
+      // 'is-exceed': inputExceed,
       'el-input-group': $slots.prepend || $slots.append,
       'el-input-group--append': $slots.append,
       'el-input-group--prepend': $slots.prepend,
@@ -31,12 +31,19 @@
 
     <input
       class="el-input__inner"
+      :disabled="inputDisabled"
+      v-bind="$attrs"
+      @input="handleInput"
+      @focus="handleFocus"
+      @blur="handleBlur"
+      @change="handleChange"
+      ref="input"
+      :type="showPassword ? (passwordVisible ? 'text': 'password') : type"
     >
-
     <!-- 后置内容 -->
     <span
         class="el-input__suffix"
-        v-if="getSuffixVisible()">
+        v-if="getSuffixVisible">
         <span class="el-input__suffix-inner">
           <template v-if="!showClear || !showPwdVisible || !isWordLimitVisible">
             <slot name="suffix"></slot>
@@ -72,7 +79,19 @@
   </template>
     <!--    textarea-->
     <template v-else>
+      <textarea
+          class="el-textarea__inner"
+          @input="handleInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @change="handleChange"
+          ref="textarea"
+          v-bind="$attrs"
+          :disabled="inputDisabled"
+          :style="textareaStyle"
+      >
 
+      </textarea>
   </template>
        <!--   字数信息 -->
     <span></span>
@@ -80,6 +99,8 @@
 </template>
 
 <script>
+import calcTextareaHeight from "./calcTextareaHeight";
+
 export default {
   name: 'ElInput',
   props: {
@@ -132,5 +153,116 @@ export default {
     },
     tabindex: String
   },
+  data(){
+    return {
+      textareaCalcStyle:{},
+      hovering: false,
+      focused: false,
+      passwordVisible: false
+    }
+  },
+  computed:{
+    inputSize:function () {
+      return this.size;
+    },
+    inputDisabled:function () {
+      return this.disabled;
+    },
+    nativeInputValue() {
+      return this.value === null || this.value === undefined ? '' : String(this.value);
+    },
+    showClear() {
+      return this.clearable &&
+          !this.inputDisabled &&
+          !this.readonly &&
+          this.nativeInputValue &&
+          (this.focused || this.hovering);
+    },
+    showPwdVisible() {
+      return this.showPassword &&
+          !this.inputDisabled
+    },
+    isWordLimitVisible() {
+      return this.showWordLimit &&
+          this.$attrs.maxlength &&
+          (this.type === 'text' || this.type === 'textarea') &&
+          !this.inputDisabled &&
+          !this.readonly &&
+          !this.showPassword;
+    },
+    getSuffixVisible() {
+      return this.$slots.suffix ||
+          this.suffixIcon ||
+          this.showClear ||
+          this.showPassword ||
+          this.isWordLimitVisible
+    },
+    validateState() {
+      return '';
+    },
+    textareaStyle(){
+      return Object.assign({},this.textareaCalcStyle,{
+        resize:this.resize
+      })
+    }
+  },
+  watch:{
+    value(){
+      this.$nextTick(this.resizeTextarea);
+    },
+    nativeInputValue() {
+      this.setNativeInputValue();
+    },
+  },
+  methods:{
+    resizeTextarea(){
+      const { autosize, type } = this;
+      if (type !== 'textarea') return;
+      if (!autosize) {
+        this.textareaCalcStyle = {
+          minHeight: calcTextareaHeight(this.$refs.textarea).minHeight
+        };
+        return;
+      }
+      const minRows = autosize.minRows;
+      const maxRows = autosize.maxRows;
+      this.textareaCalcStyle = calcTextareaHeight(this.$refs.textarea, minRows, maxRows);
+    },
+    handlePasswordVisible() {
+      this.passwordVisible = !this.passwordVisible;
+      this.$nextTick(() => {
+        this.focus();
+      });
+    },
+    clear() {
+      this.$emit('input', '');
+      this.$emit('change', '');
+      this.$emit('clear');
+    },
+    handleInput(e){
+      this.$emit('input', e.target.value);
+      this.$nextTick(this.setNativeInputValue);
+    },
+    handleFocus(event) {
+      this.focused = true;
+      this.$emit('focus', event);
+    },
+    handleBlur(event) {
+      this.focused = false;
+      this.$emit('blur', event);
+    },
+    setNativeInputValue() {
+      const input = this.getInput();
+      if (!input) return;
+      if (input.value === this.nativeInputValue) return;
+      input.value = this.nativeInputValue;
+    },
+    getInput() {
+      return this.$refs.input || this.$refs.textarea;
+    },
+    handleChange(event) {
+      this.$emit('change', event.target.value);
+    },
+  }
 };
 </script>

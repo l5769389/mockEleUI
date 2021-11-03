@@ -2,5 +2,6 @@
   "button": "./packages/button/index.js",
   "container": "./packages/container/index.js",
   "row": "./packages/row/index.js",
-  "input": "./packages/input/index.js"
+  "input": "./packages/input/index.js",
+  "icon": "./packages/icon/index.js"
 }

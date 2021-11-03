@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import '../lib/theme-chalk/button.css';
+import '../packages/theme-chalk/src/index.scss';
 
 Vue.config.productionTip = false
 new Vue({
