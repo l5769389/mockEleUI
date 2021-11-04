@@ -42,15 +42,27 @@ bem
 }
 */
 
-@mixin e($element){
-  $E:$element !global;
-  $currentSelector:'';
+@mixin e($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: "";
   @each $unit in $element {
-    $currentSelector:#{$currentSelector+'.'+$B +$element-separator +$unit +','};
+    $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
   }
-  @at-root {
-    #{$currentSelector}{
-      @content
+
+  @if hitAllSpecialNestRule($selector) {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
     }
   }
 }

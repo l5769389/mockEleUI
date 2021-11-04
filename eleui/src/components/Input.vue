@@ -56,6 +56,47 @@
           v-model="textarea2">
       </el-input>
     </div>
+
+
+
+    <div>
+      <el-input placeholder="请输入内容" v-model="input1">
+        <template slot="prepend">Http://</template>
+      </el-input>
+    </div>
+    <div style="margin-top: 15px;">
+      <el-input placeholder="请输入内容" v-model="input2">
+        <template slot="append">.com</template>
+      </el-input>
+    </div>
+
+
+size:
+    <div class="demo-input-size" style="margin-top: 20px">
+      <el-input
+          placeholder="请输入内容"
+          suffix-icon="el-icon-date"
+          v-model="input1">
+      </el-input>
+      <el-input
+          size="medium"
+          placeholder="请输入内容"
+          suffix-icon="el-icon-date"
+          v-model="input2">
+      </el-input>
+      <el-input
+          size="small"
+          placeholder="请输入内容"
+          suffix-icon="el-icon-date"
+          v-model="input3">
+      </el-input>
+      <el-input
+          size="mini"
+          placeholder="请输入内容"
+          suffix-icon="el-icon-date"
+          v-model="input4">
+      </el-input>
+    </div>
   </div>
 </template>
 <style>

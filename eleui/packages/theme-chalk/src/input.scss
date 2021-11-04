@@ -269,3 +269,85 @@
     }
   }
 }
+@include b(input-group) {
+  line-height: normal;
+  display: inline-table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing:0;
+
+  > .el-input__inner {
+    vertical-align: middle;
+    display: table-cell;
+  }
+
+  @include e((append, prepend)) {
+    background-color: $--background-color-base;
+    color: $--color-info;
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+    border: $--border-base;
+    border-radius: $--input-border-radius;
+    padding: 0 20px;
+    width: 1px;
+    white-space: nowrap;
+
+    &:focus {
+      outline: none;
+    }
+
+    .el-select,
+    .el-button {
+      display: inline-block;
+      margin: -10px -20px;
+    }
+
+    button.el-button,
+    div.el-select .el-input__inner,
+    div.el-select:hover .el-input__inner {
+      border-color: transparent;
+      background-color: transparent;
+      color: inherit;
+      border-top: 0;
+      border-bottom: 0;
+    }
+
+    .el-button,
+    .el-input {
+      font-size: inherit;
+    }
+  }
+
+  @include e(prepend) {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  @include e(append) {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  @include m(prepend) {
+    .el-input__inner {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .el-select .el-input.is-focus .el-input__inner {
+      border-color: transparent;
+    }
+  }
+
+  @include m(append) {
+    .el-input__inner {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .el-select .el-input.is-focus .el-input__inner {
+      border-color: transparent;
+    }
+  }
+}
