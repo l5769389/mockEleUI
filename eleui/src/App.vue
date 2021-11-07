@@ -3,6 +3,7 @@
     <Button/>
     <Row/>
     <TestInput/>
+    <TestInputNumber/>
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import Button from "./components/Button";
 import Row from "./components/Row";
 import TestInput from "./components/Input";
+import TestInputNumber from './components/InputNumber'
 export default {
   name: 'App',
   components: {
     TestInput,
     Button,
-    Row
+    Row,
+    TestInputNumber
   }
 }
 </script>

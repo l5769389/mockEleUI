@@ -263,6 +263,9 @@ export default {
     handleChange(event) {
       this.$emit('change', event.target.value);
     },
+  },
+  mounted() {
+    this.setNativeInputValue();
   }
 };
 </script>

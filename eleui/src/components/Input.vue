@@ -1,102 +1,6 @@
 <template>
   <div class="container">
-<!--    普通-->
-<!--    <el-input v-model="input" placeholder="请输入内容"></el-input>-->
-<!--    disable-->
-<!--    <el-input-->
-<!--        placeholder="请输入内容"-->
-<!--        v-model="input"-->
-<!--        :disabled="true">-->
-<!--    </el-input>-->
-
-    clear
-    <el-input
-        placeholder="请输入内容"
-        v-model="input"
-        clearable>
-    </el-input>
-
-    password
-    <el-input placeholder="请输入密码" v-model="input" show-password></el-input>
-
-
-    属性方式：
-    <el-input
-        placeholder="请选择日期"
-        suffix-icon="el-icon-date"
-        v-model="input1">
-    </el-input>
-    <el-input
-        placeholder="请输入内容"
-        prefix-icon="el-icon-search"
-        v-model="input2">
-    </el-input>
-
-  <div class="demo-input-suffix">
-    slot 方式：
-    <el-input
-        placeholder="请选择日期"
-        v-model="input3">
-      <i slot="suffix" class="el-input__icon el-icon-date"></i>
-    </el-input>
-    <el-input
-        placeholder="请输入内容"
-        v-model="input4">
-      <i slot="prefix" class="el-input__icon el-icon-search"></i>
-    </el-input>
-  </div>
-
-
-
-    <div style="margin-top: 20px">
-      <el-input
-          type="textarea"
-          :autosize="{ minRows: 2, }"
-          placeholder="请输入内容"
-          v-model="textarea2">
-      </el-input>
-    </div>
-
-
-
-    <div>
-      <el-input placeholder="请输入内容" v-model="input1">
-        <template slot="prepend">Http://</template>
-      </el-input>
-    </div>
-    <div style="margin-top: 15px;">
-      <el-input placeholder="请输入内容" v-model="input2">
-        <template slot="append">.com</template>
-      </el-input>
-    </div>
-
-
-size:
-    <div class="demo-input-size" style="margin-top: 20px">
-      <el-input
-          placeholder="请输入内容"
-          suffix-icon="el-icon-date"
-          v-model="input1">
-      </el-input>
-      <el-input
-          size="medium"
-          placeholder="请输入内容"
-          suffix-icon="el-icon-date"
-          v-model="input2">
-      </el-input>
-      <el-input
-          size="small"
-          placeholder="请输入内容"
-          suffix-icon="el-icon-date"
-          v-model="input3">
-      </el-input>
-      <el-input
-          size="mini"
-          placeholder="请输入内容"
-          suffix-icon="el-icon-date"
-          v-model="input4">
-      </el-input>
-    </div>
+      <el-input v-model="val" />
   </div>
 </template>
 <style>
@@ -111,14 +15,9 @@ export default {
   components:{
     ElInput,
   },
-  data() {
+  data(){
     return {
-      input: '',
-      input1: '',
-      input2: '',
-      input3: '',
-      input4: '',
-      textarea2: ''
+      val:''
     }
   }
 }
