@@ -4,6 +4,8 @@
     <Row/>
     <TestInput/>
     <TestInputNumber/>
+    <TestElTag/>
+    <Test/>
   </div>
 </template>
 
@@ -12,13 +14,17 @@ import Button from "./components/Button";
 import Row from "./components/Row";
 import TestInput from "./components/Input";
 import TestInputNumber from './components/InputNumber'
+import TestElTag from "./components/Tag";
+import Test from "./components/Test";
 export default {
   name: 'App',
   components: {
+    TestElTag,
     TestInput,
     Button,
     Row,
-    TestInputNumber
+    TestInputNumber,
+    Test,
   }
 }
 </script>

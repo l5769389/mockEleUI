@@ -4,5 +4,6 @@
   "row": "./packages/row/index.js",
   "input": "./packages/input/index.js",
   "icon": "./packages/icon/index.js",
-  "input-number": "./packages/input-number/index.js"
+  "input-number": "./packages/input-number/index.js",
+  "tag": "./packages/tag/index.js"
 }

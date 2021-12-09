@@ -1,7 +1,17 @@
 
 <template>
   <div>
-    <el-input-number v-model="num" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+    <el-input-number
+        v-model="num"
+        @change="handleChange"
+        :min="1" :max="10"
+        :step="0.1"
+        :precision="2"
+        step-strictly
+        controls-position="right"
+        label="描述文字">
+
+    </el-input-number>
   </div>
 </template>
 <script>
